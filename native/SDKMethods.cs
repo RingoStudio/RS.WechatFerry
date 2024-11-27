@@ -9,7 +9,7 @@ namespace RS.WechatFerry.native
 {
     internal class SDKMethods
     {
-        const string dllPath = "wcfbin\\v3.9.2.4\\sdk.dll";
+        const string dllPath = "wcfbin\\v3.9.3.5\\sdk.dll";
         [DllImport(dllPath, EntryPoint = "WxInitSDK")]
         public static extern int WxInitSDK(bool debug, int port);
         [DllImport(dllPath, EntryPoint = "WxDestroySDK")]

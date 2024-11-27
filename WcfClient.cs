@@ -1155,7 +1155,6 @@ namespace RS.WechatFerry
             _lastSendLog = 0;
 
         }
-
         private void MsgEnqueu(SendMsg msg)
         {
             // 长消息 切割
@@ -1165,21 +1164,24 @@ namespace RS.WechatFerry
                 {
                     _msgQueue.Enqueue(slice);
                 }
-                return;
+                goto ToSend;
             }
-
-            // 短消息合并
-            foreach (var item in _msgQueue)
+            else
             {
-                if (item.IsMatch(msg))
+                // 短消息合并
+                foreach (var item in _msgQueue)
                 {
-                    item.AppendOne(msg);
-                    return;
+                    if (item.IsMatch(msg))
+                    {
+                        item.AppendOne(msg);
+                        goto ToSend;
+                    }
                 }
             }
 
             _msgQueue.Enqueue(msg);
 
+ToSend:
             if (_sendingTask is null || _sendingTask.IsCompleted) _sendingTask = Task.Run(SendingMsg);
         }
 

@@ -17,8 +17,8 @@
 
 ## 依赖版本
 WechatFerry v39.3.5 - 微信3.9.11.25 
+WechatFerry v39.4.1 - 微信3.9.12.17
 [下载地址](https://github.com/lich0821/WeChatFerry/releases)
-
 
 ## 编译环境
 Visual Studio 2022 + .Net 8.0
@@ -39,7 +39,9 @@ Visual Studio 2022 + .Net 8.0
 - 首次发布
 #### 2025.01.16
 - 适配wcf版本v39.3.5
-
+#### 2025.03.08
+- 适配wcf版本v39.4.1
+- 
 ## 免责声明
 代码仅供交流学习使用，请勿用于非法用途和商业用途！如因此产生任何法律纠纷，均与作者无关！
 

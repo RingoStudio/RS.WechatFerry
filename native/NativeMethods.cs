@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RS.WechatFerry.native
 {
+    /// <summary>
+    /// WINDOWS注入调用
+    /// </summary>
     public static class NativeMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]

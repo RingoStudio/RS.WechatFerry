@@ -766,10 +766,14 @@ namespace RS.WechatFerry
                 foreach (var id in ret.Keys.ToArray())
                 {
                     dt = DbSqlQuery("MicroMsg.db", $"SELECT RoomData FROM ChatRoom WHERE ChatRoomName = '{id}'");
-                    if (dt is null || dt.Rows.Count <= 0 || dt.Rows[0][0] is null) return ret;
+                   // LoggerStatic.WriteInfo(configs.SysConfigs.LOG_FILE, "group_data:wxid:", id);
+                    if (dt is null || dt.Rows.Count <= 0 || dt.Rows[0][0] is null) continue;
 
                     var data = Convert.FromBase64String(dt.Rows[0][0]?.ToString() ?? "");
                     var roomData = RoomData.Parser.ParseFrom(data);
+
+                   // LoggerStatic.WriteInfo(configs.SysConfigs.LOG_FILE, "group_data:raw:", dt.Rows[0][0]?.ToString() ?? "null");
+                   // LoggerStatic.WriteInfo(configs.SysConfigs.LOG_FILE, "group_data:count:", roomData.Members.Count.ToString());
 
                     foreach (var item in roomData.Members)
                     {
@@ -781,6 +785,8 @@ namespace RS.WechatFerry
                         {
                             ret[id][item.Wxid] = item.Name;
                         }
+                      //  LoggerStatic.WriteInfo(configs.SysConfigs.LOG_FILE, "group_data:member:", $"wxid:{item.Wxid}, name:{item.Name}");
+
                     }
                 }
 
